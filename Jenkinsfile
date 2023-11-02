@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Jenkins-Agent' }
+    agent { label 'ci-cd-slave' }
     tools {
         jdk 'java17'
         maven 'Maven3'
