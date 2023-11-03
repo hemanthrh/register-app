@@ -11,6 +11,9 @@ pipeline {
 	    DOCKER_PASS = 'HyundaiCreta@2023'
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+	    registry = "$DOCKER_USER/$APP_NAME"
+registryCredential = 'dockerhub'
+dockerImage = ''
 	    
     }
 
@@ -59,12 +62,13 @@ stage("Quality Gate"){
 
         }
 
-	            stage('Build Docker Image') {  
-    steps{                     
-	sh 'sudo docker build -t $IMAGE_NAME:$BUILD_NUMBER .'     
-	               
-    }           
-} 
+	            stage('Docker Build image') {
+steps{
+script {
+dockerImage = docker.build registry + ":$BUILD_NUMBER"
+}
+}
+}
 
 	    
 	    
