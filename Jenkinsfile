@@ -65,8 +65,6 @@ steps{
 script {
 docker_image = docker.build "${IMAGE_NAME}"
 	
-
-	
 }
 }
 }
@@ -97,8 +95,7 @@ steps{
 sh "docker rmi $registry:$BUILD_NUMBER"
 }
 }
-}
-}
+
 
        
 
