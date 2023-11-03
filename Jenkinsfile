@@ -62,7 +62,7 @@ stage("Quality Gate"){
 	            stage('Build Docker Image') {  
     steps{                     
 	sh 'sudo docker build -t $IMAGE_NAME:$BUILD_NUMBER .'     
-	sh 'echo 'Build Image Completed''                
+	               
     }           
 } 
 
