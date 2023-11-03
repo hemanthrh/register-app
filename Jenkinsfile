@@ -64,8 +64,7 @@ stage("Quality Gate"){
 steps{
 script {
 docker_image = docker.build "${IMAGE_NAME}"
-	docker_image.push("${IMAGE_TAG}")
-                        docker_image.push('latest')
+	
 
 	
 }
@@ -78,11 +77,12 @@ stage('DOcker Push image') {
 steps{
 script {
 docker.withRegistry( '', registryCredential ) {
-dockerImage.push()
+docker_image.push("${IMAGE_TAG}")
+                        docker_image.push('latest')
 }
 }
 }
-}
+
 
        stage("Trivy Scan") {
            steps {
