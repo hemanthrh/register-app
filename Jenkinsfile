@@ -8,6 +8,7 @@ pipeline {
 	    APP_NAME = "register-app-pipeline"
             RELEASE = "1.0.0"
             DOCKER_USER = "hemanth2220"
+	    DOCKER_PASS = 'HyundaiCreta@2023'
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	    
@@ -60,11 +61,8 @@ stage("Quality Gate"){
 
 	            stage("Build & Push Docker Image") {
             steps {
-                script {
-                    docker_image = docker.build "${IMAGE_NAME}"
-                    docker_image.push("${IMAGE_TAG}")
-                    docker_image.push('latest')
-                    }
+                withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
+        bat "docker push devopsglobalmedia/teamcitydocker:build"
                 }
             
 
