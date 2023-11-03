@@ -8,8 +8,7 @@ pipeline {
 	    APP_NAME = "register-app-pipeline"
             RELEASE = "1.0.0"
             DOCKER_USER = "hemanth2220"
-	    DOCKER_PASS = 'HyundaiCreta@2023'
-            IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+	    IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	    registry = "$DOCKER_USER/$APP_NAME"
 registryCredential = 'dockerhub'
@@ -72,18 +71,15 @@ dockerImage = docker.build registry + ":$BUILD_NUMBER"
 
 	    
 	    
-stage("Push Docker Image") {
-            steps {
-		    script {
-			    
-                    docker.withRegistry('',DOCKER_PASS) {
-                        docker_image.push("${IMAGE_TAG}")
-                        docker_image.push('latest')
-                    }
-                }
-            }
-
-       }
+stage('DOcker Push image') {
+steps{
+script {
+docker.withRegistry( '', registryCredential ) {
+dockerImage.push()
+}
+}
+}
+}
 
 
 
