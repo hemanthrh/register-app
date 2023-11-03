@@ -8,6 +8,7 @@ pipeline {
 	    APP_NAME = "register-app-pipeline"
             RELEASE = "1.0.0"
             registryCredential = 'dockerhub'
+	    DOCKER_USER = hemanth2220
 	    IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
 	    registry = "$DOCKER_USER/$APP_NAME"
