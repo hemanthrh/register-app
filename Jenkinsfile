@@ -93,15 +93,16 @@ docker_image.push("${IMAGE_TAG}")
 
 
 
-stage("Trigger CD Pipeline") {
-            steps {
-                script {
-                    sh "curl -v -k --user admin:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' '192.168.163.130:8080/job/git-ops-cd/buildWithParameters?token=gitops-token'"
-                }
-            }
-       }
-    
 
+
+stage ('Cleanup Artifacts') {
+           steps {
+               script {
+                    sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker rmi ${IMAGE_NAME}:latest"
+               }
+          }
+       }
 
        
 
