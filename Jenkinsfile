@@ -68,10 +68,9 @@ docker_image = docker.build "${IMAGE_NAME}"
 }
 }
 }
-
 	    
 	    
-stage('DOcker Push image') {
+stage('Docker Push image') {
 steps{
 script {
 docker.withRegistry( '', registryCredential ) {
@@ -80,7 +79,7 @@ docker_image.push("${IMAGE_TAG}")
 }
 }
 }
-
+}
 
        stage("Trivy Scan") {
            steps {
@@ -101,4 +100,4 @@ sh "docker rmi $registry:$BUILD_NUMBER"
 
        }
 }
-}
+
