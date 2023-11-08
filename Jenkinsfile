@@ -1,5 +1,4 @@
 @Library('pipeline-library-demo')_
-
 pipeline {
     agent { label 'ci-cd-slave' }
     tools {
@@ -32,7 +31,10 @@ pipeline {
                 }
         }
 
-        
+        stage("Buildign Package"){
+           steps {
+                echo" Building in Shared Library"
+           }
 
        stage("Test Application"){
            steps {
