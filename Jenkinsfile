@@ -31,8 +31,11 @@ pipeline {
                 }
         }
 
-        stage("Build Application")
-
+        stage("Build Application"){
+           steps {
+                 build()
+           }
+       }
        stage("Test Application"){
            steps {
                  sh "mvn test"
