@@ -1,4 +1,4 @@
-@Library('pipeline-library-demo')_
+@Library('pipeline-library-demos')_
 pipeline {
     agent { label 'ci-cd-slave' }
     tools {
