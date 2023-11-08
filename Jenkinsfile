@@ -33,7 +33,7 @@ pipeline {
 
         stage("Build Application"){
            steps {
-                 build()
+                 mavenBuild()
            }
        }
        stage("Test Application"){
