@@ -31,11 +31,7 @@ pipeline {
                 }
         }
 
-        stage("Buildign Package"){
-           steps {
-                echo" Building in Shared Library"
-           }
-	}
+        stage("Build Application")
 
        stage("Test Application"){
            steps {
