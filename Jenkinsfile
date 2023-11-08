@@ -35,6 +35,7 @@ pipeline {
            steps {
                 echo" Building in Shared Library"
            }
+	}
 
        stage("Test Application"){
            steps {
